@@ -33,7 +33,7 @@ jobs:
       - name: DockerHub Upload
         env:
           NAME: {{ secrets.DOCKERHUB_USERNAME }}
-          REPO: {{ secrets.DOCKERHUB_REPO}}
+          REPO: {{ secrets.DOCKERHUB_REPO }}
         run:
           docker build -t $REPOS.
           docker tag $REPO:latest $NAME/$REPO:latest
