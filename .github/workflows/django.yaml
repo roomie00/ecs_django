@@ -47,11 +47,19 @@ jobs:
       - name: AWS Role을 이용한 로그인
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume:
-            arn:aws:iam::463470956721:role/django-role
+          role-to-assume: arn:aws:iam::463470956721:role/django-role
           role-session-name: sampleSessionName
           aws-region: ap-northeast-2
       
       - name: ECR에 로그인
         id: login-ecr
-        uses: aws-action/amazon-ecr-login@v1
+        uses: aws-action/amazon-ecr-login@v2
+      
+      - name: build and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/ecs_django:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/djangoecs:$IMAGE_TAG
