@@ -35,6 +35,6 @@ jobs:
           NAME: ${{ secrets.DOCKERHUB_USERNAME }}
           REPO: ${{ secrets.DOCKERHUB_REPO }}
         run:
-          docker build -t $REPOS.
+          docker build -t $REPO .
           docker tag $REPO:latest $NAME/$REPO:latest
           docker push $NAME/$REPO:latest
