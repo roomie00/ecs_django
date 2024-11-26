@@ -51,3 +51,7 @@ jobs:
             arn:aws:iam::463470956721:role/django-role
           role-session-name: sampleSessionName
           aws-region: ap-northeast-2
+      
+      - name: ECR에 로그인
+        id: login-ecr
+        uses: aws-action/amazon-ecr-login@v1
