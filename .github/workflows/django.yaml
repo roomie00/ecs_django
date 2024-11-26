@@ -62,4 +62,4 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/ecs_django:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/djangoecs:$IMAGE_TAG
+          docker push $ECR_REGISTRY/ecs_django:$IMAGE_TAG
